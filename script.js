@@ -1,7 +1,12 @@
-class Stopwatch {
+class Stopwatch extends React.Component {
     constructor(display) {
-        this.running = false;
-        this.display = display;
+        super(display); // co to daje?
+
+        this.state = {
+            running: false,
+            display: display
+        };
+
         this.reset();
         this.print(this.times);
     }
@@ -10,7 +15,7 @@ class Stopwatch {
         this.times = {
             minutes: 0,
             seconds: 0,
-            miliseconds: 0
+            miliseconds: 0 
         };
     }
 
@@ -53,12 +58,18 @@ class Stopwatch {
     }
 
     render() {
+        return <div>
+                    <p>Hello world!</p>
+               </div>
+    }
+        /*
         return <nav className={'controls'}>
                     <a href= {'#'} className={'button'} id= {'start'}>Start</a>
                     <a href= {'#'} className={'button'} id= {'stop'}>Stop</a>
                </nav>
                     <div className={'stopwatch'}></div>
                     <ul className={'results'}></ul>
+        */
         /*
             React.createElement('nav', {className: 'controls'},
             React.createElement('a', {href: '#', className: 'button', id: 'start'}, 'Start'),
@@ -66,9 +77,9 @@ class Stopwatch {
         ),
             React.createElement('div', {className: "stopwatch"}),
             React.createElement('ul', {className: "results"}); 
-    */
-    }
+        */
 }
+
 function pad0(value) {
     let result = value.toString();
     if (result.length < 2) {
@@ -77,17 +88,17 @@ function pad0(value) {
     return result;
 }
 
+/*
 const stopwatch = new Stopwatch(
 document.querySelector('.stopwatch'));
 
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
+ 
 
 let stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => stopwatch.stop());
+*/
 
-var element = React.createElement('div', {}, 
-    React.createElement(Stopwatch)
- );
-
+var element = React.createElement(Stopwatch);
 ReactDOM.render(element, document.getElementById('app'));
