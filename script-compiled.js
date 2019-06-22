@@ -14,8 +14,6 @@ var Stopwatch = function (_React$Component) {
     function Stopwatch(display) {
         _classCallCheck(this, Stopwatch);
 
-        // co to daje?
-
         var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, display));
 
         _this.state = {
@@ -40,7 +38,7 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'print',
         value: function print() {
-            this.display.innerText = this.format(this.times);
+            //    this.display.innerText = this.format(this.times);
         }
     }, {
         key: 'format',
@@ -88,33 +86,28 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+
             return React.createElement(
                 'div',
                 null,
                 React.createElement(
-                    'p',
-                    null,
-                    'Hello world!'
-                )
+                    'nav',
+                    { className: 'controls' },
+                    React.createElement(
+                        'a',
+                        { href: '#', className: 'button', id: 'start' },
+                        'Start'
+                    ),
+                    React.createElement(
+                        'a',
+                        { href: '#', className: 'button', id: 'stop' },
+                        'Stop'
+                    )
+                ),
+                React.createElement('div', { className: 'stopwatch' }),
+                React.createElement('ul', { className: 'results' })
             );
         }
-        /*
-        return <nav className={'controls'}>
-                    <a href= {'#'} className={'button'} id= {'start'}>Start</a>
-                    <a href= {'#'} className={'button'} id= {'stop'}>Stop</a>
-               </nav>
-                    <div className={'stopwatch'}></div>
-                    <ul className={'results'}></ul>
-        */
-        /*
-            React.createElement('nav', {className: 'controls'},
-            React.createElement('a', {href: '#', className: 'button', id: 'start'}, 'Start'),
-            React.createElement('a', {href: "#", className: "button", id: "stop"}, 'Stop')
-        ),
-            React.createElement('div', {className: "stopwatch"}),
-            React.createElement('ul', {className: "results"}); 
-        */
-
     }]);
 
     return Stopwatch;
@@ -128,10 +121,9 @@ function pad0(value) {
     return result;
 }
 
-/*
-const stopwatch = new Stopwatch(
-document.querySelector('.stopwatch'));
+var stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
 
+/*
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
  

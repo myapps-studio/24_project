@@ -1,6 +1,6 @@
 class Stopwatch extends React.Component {
     constructor(display) {
-        super(display); // co to daje?
+        super(display);
 
         this.state = {
             running: false,
@@ -20,7 +20,7 @@ class Stopwatch extends React.Component {
     }
 
     print() {
-        this.display.innerText = this.format(this.times);
+    //    this.display.innerText = this.format(this.times);
     }
 
     format(times) {
@@ -58,26 +58,16 @@ class Stopwatch extends React.Component {
     }
 
     render() {
-        return <div>
-                    <p>Hello world!</p>
-               </div>
+   
+        return  <div>
+                    <nav className={'controls'}>
+                        <a href= {'#'} className={'button'} id= {'start'}>Start</a>
+                        <a href= {'#'} className={'button'} id= {'stop'}>Stop</a>
+                    </nav>
+                        <div className={'stopwatch'}></div>
+                        <ul className={'results'}></ul>
+                </div>
     }
-        /*
-        return <nav className={'controls'}>
-                    <a href= {'#'} className={'button'} id= {'start'}>Start</a>
-                    <a href= {'#'} className={'button'} id= {'stop'}>Stop</a>
-               </nav>
-                    <div className={'stopwatch'}></div>
-                    <ul className={'results'}></ul>
-        */
-        /*
-            React.createElement('nav', {className: 'controls'},
-            React.createElement('a', {href: '#', className: 'button', id: 'start'}, 'Start'),
-            React.createElement('a', {href: "#", className: "button", id: "stop"}, 'Stop')
-        ),
-            React.createElement('div', {className: "stopwatch"}),
-            React.createElement('ul', {className: "results"}); 
-        */
 }
 
 function pad0(value) {
@@ -88,10 +78,10 @@ function pad0(value) {
     return result;
 }
 
-/*
-const stopwatch = new Stopwatch(
-document.querySelector('.stopwatch'));
 
+const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
+
+/*
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
  
