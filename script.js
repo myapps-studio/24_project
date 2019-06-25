@@ -1,14 +1,16 @@
 class Stopwatch extends React.Component {
-    constructor(display) {
-        super(display);
+    constructor() {
+        super();
 
         this.state = {
             running: false,
-            display: display
+            minutes: 0,
+            seconds: 0,
+            miliseconds: 0
         };
 
         this.reset();
-        this.print(this.times);
+    //    this.print(this.times);
     }
 
     reset() {
@@ -61,8 +63,8 @@ class Stopwatch extends React.Component {
    
         return  <div>
                     <nav className={'controls'}>
-                        <a href= {'#'} className={'button'} id= {'start'}>Start</a>
-                        <a href= {'#'} className={'button'} id= {'stop'}>Stop</a>
+                        <a href= {'#'} className={'button'} id= {'start'} onClicked={start} >Start</a>
+                        <a href= {'#'} className={'button'} id= {'stop'} onClicked={stop}>Stop</a>
                     </nav>
                         <div className={'stopwatch'}></div>
                         <ul className={'results'}></ul>
@@ -80,7 +82,6 @@ function pad0(value) {
 
 /*
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
 
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
