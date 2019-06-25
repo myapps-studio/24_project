@@ -78,17 +78,16 @@ function pad0(value) {
     return result;
 }
 
-
+/*
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
 
-/*
+
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
  
-
 let stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => stopwatch.stop());
 */
 
-var element = React.createElement(Stopwatch);
+var element = <Stopwatch/>
 ReactDOM.render(element, document.getElementById('app'));
