@@ -11,48 +11,52 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Stopwatch = function (_React$Component) {
     _inherits(Stopwatch, _React$Component);
 
-    function Stopwatch(display) {
+    function Stopwatch() {
         _classCallCheck(this, Stopwatch);
 
-        var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, display));
+        var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this));
 
         _this.state = {
-            running: false,
-            display: display
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0
+            },
+            running: false
         };
 
         _this.reset();
-        _this.print(_this.times);
+        //    this.print(this.times);
         return _this;
     }
 
     _createClass(Stopwatch, [{
         key: 'reset',
         value: function reset() {
-            this.times = {
+            this.setState.times({
                 minutes: 0,
                 seconds: 0,
                 miliseconds: 0
-            };
+            });
         }
-    }, {
-        key: 'print',
-        value: function print() {
-            //    this.display.innerText = this.format(this.times);
-        }
+
+        //print() {
+        //    this.display.innerText = this.format(this.times);
+        //}
+
     }, {
         key: 'format',
         value: function format(times) {
-            return pad0(times.minutes) + ':' + pad0(times.seconds) + ':' + pad0(Math.floor(times.miliseconds));
+            return pad0(setState.times.minutes) + ':' + pad0(setState.times.seconds) + ':' + pad0(Math.floor(setState.times.miliseconds));
         }
     }, {
         key: 'start',
         value: function start() {
             var _this2 = this;
 
-            if (!this.running) {
-                this.running = true;
-                this.watch = setInterval(function () {
+            if (!this.setState.running) {
+                this.setState.running = true;
+                this.setState.watch = setInterval(function () {
                     return _this2.step();
                 }, 10);
             }
@@ -60,27 +64,27 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'step',
         value: function step() {
-            if (!this.running) return;
+            if (!this.setState.running) return;
             this.calculate();
-            this.print();
+            //    this.print();
         }
     }, {
         key: 'calculate',
         value: function calculate() {
-            this.times.miliseconds += 1;
-            if (this.times.miliseconds >= 100) {
-                this.times.seconds += 1;
-                this.times.miliseconds = 0;
+            this.setState.times.miliseconds += 1;
+            if (this.setState.times.miliseconds >= 100) {
+                this.setState.times.seconds += 1;
+                this.setState.times.miliseconds = 0;
             }
-            if (this.times.seconds >= 60) {
-                this.times.minutes += 1;
-                this.times.seconds = 0;
+            if (this.setState.times.seconds >= 60) {
+                this.setState.times.minutes += 1;
+                this.setState.times.seconds = 0;
             }
         }
     }, {
         key: 'stop',
         value: function stop() {
-            this.running = false;
+            this.setState.running = false;
             clearInterval(this.watch);
         }
     }, {
@@ -95,13 +99,18 @@ var Stopwatch = function (_React$Component) {
                     { className: 'controls' },
                     React.createElement(
                         'a',
-                        { href: '#', className: 'button', id: 'start' },
-                        'Start'
+                        { href: '#', className: 'button', id: 'start', onClick: this.start },
+                        ' Start '
                     ),
                     React.createElement(
                         'a',
-                        { href: '#', className: 'button', id: 'stop' },
-                        'Stop'
+                        { href: '#', className: 'button', id: 'stop', onClick: this.stop },
+                        ' Stop '
+                    ),
+                    React.createElement(
+                        'a',
+                        { href: '#', className: 'button', id: 'reset', onClick: this.reset },
+                        ' Reset '
                     )
                 ),
                 React.createElement('div', { className: 'stopwatch' }),
@@ -123,7 +132,6 @@ function pad0(value) {
 
 /*
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
 
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
