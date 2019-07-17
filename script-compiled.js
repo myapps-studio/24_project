@@ -63,22 +63,21 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'calculate',
         value: function calculate() {
-            var tempTimes = {
-                minutes: this.state.times.minutes,
-                seconds: this.state.times.seconds,
-                miliseconds: this.state.times.miliseconds
-            };
+            var times = this.state.times;
 
-            tempTime.miliseconds += 1;
 
-            if (tempTimes.miliseconds >= 100) {
-                tempTimes.seconds += 1;
-                tempTimes.miliseconds = 0;
+            times.miliseconds += 1;
+
+            if (times.miliseconds >= 100) {
+                times.seconds += 1;
+                times.miliseconds = 0;
             }
-            if (tempTimes.seconds >= 60) {
-                tempTimes.minutes += 1;
-                tempTimes.seconds = 0;
+            if (times.seconds >= 60) {
+                times.minutes += 1;
+                times.seconds = 0;
             }
+
+            this.setState({ times: times });
         }
     }, {
         key: 'stop',
@@ -89,6 +88,7 @@ var Stopwatch = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
 
             return React.createElement(
                 'div',
@@ -98,17 +98,23 @@ var Stopwatch = function (_React$Component) {
                     { className: 'controls' },
                     React.createElement(
                         'a',
-                        { href: '#', className: 'button', id: 'start', onClick: this.start },
+                        { href: '#', className: 'button', id: 'start', onClick: function onClick() {
+                                return _this3.start();
+                            } },
                         ' Start '
                     ),
                     React.createElement(
                         'a',
-                        { href: '#', className: 'button', id: 'stop', onClick: this.stop },
+                        { href: '#', className: 'button', id: 'stop', onClick: function onClick() {
+                                return _this3.stop();
+                            } },
                         ' Stop '
                     ),
                     React.createElement(
                         'a',
-                        { href: '#', className: 'button', id: 'reset', onClick: this.reset },
+                        { href: '#', className: 'button', id: 'reset', onClick: function onClick() {
+                                return _this3.reset();
+                            } },
                         ' Reset '
                     )
                 ),

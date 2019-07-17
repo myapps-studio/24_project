@@ -39,22 +39,20 @@ class Stopwatch extends React.Component {
 
 
     calculate() {
-        let tempTimes = {
-            minutes: this.state.times.minutes,
-            seconds: this.state.times.seconds,
-            miliseconds: this.state.times.miliseconds
+        const { times } = this.state;
+
+        times.miliseconds += 1;
+
+        if (times.miliseconds >= 100) {
+            times.seconds += 1;
+            times.miliseconds = 0;
+        }
+        if (times.seconds >= 60) {
+            times.minutes += 1; 
+            times.seconds = 0;
         }
 
-        tempTime.miliseconds += 1;
-
-        if (tempTimes.miliseconds >= 100) {
-            tempTimes.seconds += 1;
-            tempTimes.miliseconds = 0;
-        }
-        if (tempTimes.seconds >= 60) {
-            tempTimes.minutes += 1; 
-            tempTimes.seconds = 0;
-        }
+        this.setState({ times })
     } 
 
     stop() {
@@ -66,12 +64,12 @@ class Stopwatch extends React.Component {
    
         return  <div>
                     <nav className={'controls'}>
-                        <a href= {'#'} className={'button'} id= {'start'} onClick= {this.start} > Start </a>
-                        <a href= {'#'} className={'button'} id= {'stop'} onClick= {this.stop}> Stop </a>
-                        <a href= {'#'} className={'button'} id= {'reset'} onClick= {this.reset}> Reset </a>
+                        <a href= {'#'} className={'button'} id= {'start'} onClick={() => this.start()} > Start </a>
+                        <a href= {'#'} className={'button'} id= {'stop'} onClick= {() => this.stop()}> Stop </a>
+                        <a href= {'#'} className={'button'} id= {'reset'} onClick= {() => this.reset()}> Reset </a>
                     </nav>
-                        <div className={'stopwatch'}>{this.format(this.state.times)}</div>
-                        <ul className={'results'}></ul>   
+                        <div className={'stopwatch'}>{this.format(this.state.times)}</div> 
+                        <ul className={'results'}></ul>
                 </div>
     }
 }
